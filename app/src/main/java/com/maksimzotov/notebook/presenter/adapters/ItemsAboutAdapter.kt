@@ -4,12 +4,13 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.maksimzotov.notebook.databinding.ItemAboutBinding
 import com.maksimzotov.notebook.domain.entities.itemabout.ItemAbout
 import com.maksimzotov.notebook.presenter.main.util.OnItemClickListener
 
 class ItemAboutViewHolder(
-    binding: ItemAboutBinding,
+    private val binding: ItemAboutBinding,
     private val onCityClickListener: OnItemClickListener,
 ) : RecyclerView.ViewHolder(binding.root) {
 
@@ -20,7 +21,12 @@ class ItemAboutViewHolder(
     }
 
     fun bind(item: ItemAbout) {
-        TODO()
+        with(binding) {
+            title.text = item.title
+            image.load(item.urlToImage) {
+                crossfade(true)
+            }
+        }
     }
 }
 

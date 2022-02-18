@@ -24,22 +24,31 @@ sealed class BaseNoteViewHolder(
 }
 
 class NoteViewHolder(
-    binding: ItemNoteBinding,
+    private val binding: ItemNoteBinding,
     onCityClickListener: OnItemClickListener,
 ) : BaseNoteViewHolder(binding.root, onCityClickListener) {
 
     fun bind(item: Note) {
-        TODO()
+        with(binding) {
+            title.text = item.title
+            text?.text = item.text
+            time.text = item.time.toString()
+        }
     }
 }
 
 class NoteWithAlarmViewHolder(
-    binding: ItemNoteWithAlarmBinding,
+    private val binding: ItemNoteWithAlarmBinding,
     onCityClickListener: OnItemClickListener,
 ) : BaseNoteViewHolder(binding.root, onCityClickListener) {
 
     fun bind(item: NoteWithAlarm) {
-        TODO()
+        with(binding) {
+            title.text = item.title
+            text?.text = item.text
+            time.text = item.time.toString()
+            timeToAlarm.text = item.timeToNotify.toString()
+        }
     }
 }
 

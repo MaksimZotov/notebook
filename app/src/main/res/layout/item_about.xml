@@ -17,7 +17,7 @@
             android:layout_marginVertical="@dimen/about_item_image_padding_vertical"/>
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text"
+            android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="2"

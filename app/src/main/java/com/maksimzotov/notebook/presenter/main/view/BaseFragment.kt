@@ -35,12 +35,12 @@ abstract class BaseFragment<VM: BaseViewModel, VB: ViewBinding>(
     private var _binding: VB? = null
     protected val binding get() = checkNotNull(_binding)
 
-    private val navController by lazy {
-        findNavController()
-    }
-
     private val snackBar by lazy {
         Snackbar.make(binding.root, EMPTY_STRING, Snackbar.LENGTH_INDEFINITE)
+    }
+
+    protected val navController by lazy {
+        findNavController()
     }
 
     override fun onAttach(context: Context) {
@@ -70,16 +70,13 @@ abstract class BaseFragment<VM: BaseViewModel, VB: ViewBinding>(
 
     protected open fun observeViewModel() {
         with(viewModel) {
-            showShortToast.observe { shortToast ->
+            showShortToastFlow.observe { shortToast ->
                 Toast.makeText(context, shortToast.text, Toast.LENGTH_SHORT).show()
             }
-            showLongToast.observe { longToast ->
+            showLongToastFlow.observe { longToast ->
                 Toast.makeText(context, longToast.text, Toast.LENGTH_LONG).show()
             }
-            navigate.observe { navigate ->
-                navController.navigate(navigate.action)
-            }
-            popBackStack.observe {
+            popBackStackFlow.observe {
                 navController.popBackStack()
             }
             snackBarIsActive.observe { isActive ->

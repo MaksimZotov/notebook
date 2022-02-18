@@ -7,4 +7,6 @@
     <dimen name="about_item_text_padding_vertical">16dp</dimen>
 
     <dimen name="switch_width">180dp</dimen>
+
+    <dimen name="button_bottom_padding">32dp</dimen>
 </resources>

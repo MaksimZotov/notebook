@@ -5,6 +5,8 @@
     <string name="settings">Настройки</string>
     <string name="about">О приложении</string>
 
+    <string name="save">Сохранить</string>
+
     <string name="dark_theme">Тёмная Тема</string>
     <string name="bottom_navigation">Нижняя Навигация</string>
 </resources>

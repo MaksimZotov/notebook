@@ -32,12 +32,22 @@
     </ScrollView>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/save"
+        android:id="@+id/time_to_alarm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/save"
+        android:layout_marginBottom="@dimen/button_bottom_padding"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/time_to_alarm"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="32dp"/>
+        android:layout_marginBottom="@dimen/button_bottom_padding"
+        android:text="@string/save"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

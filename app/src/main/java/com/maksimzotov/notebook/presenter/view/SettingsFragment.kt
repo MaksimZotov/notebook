@@ -12,4 +12,15 @@ class SettingsFragment: BaseFragment<SettingsViewModel, FragmentSettingsBinding>
     override fun inject() {
         requireContext().appComponent.inject(this)
     }
+
+    override fun setupView() {
+        with(binding) {
+            darkTheme.setOnCheckedChangeListener { _, isChecked ->
+                viewModel.setDarkTheme(isChecked)
+            }
+            bottomNavigation.setOnCheckedChangeListener { _, isChecked ->
+                viewModel.setBottomNavigation(isChecked)
+            }
+        }
+    }
 }

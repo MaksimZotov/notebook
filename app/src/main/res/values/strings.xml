@@ -5,6 +5,8 @@
     <string name="settings">Settings</string>
     <string name="about">About</string>
 
+    <string name="save">Save</string>
+
     <string name="dark_theme">Dark Theme</string>
     <string name="bottom_navigation">Bottom Navigation</string>
 </resources>

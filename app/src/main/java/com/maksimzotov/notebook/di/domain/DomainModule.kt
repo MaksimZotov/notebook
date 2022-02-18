@@ -9,6 +9,7 @@ import kotlinx.coroutines.Dispatchers
 
 @Module
 class DomainModule {
+
     @Provides
     @DispatcherDefault
     fun provideCoroutineDispatcherDefault(): CoroutineDispatcher {

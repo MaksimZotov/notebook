@@ -22,9 +22,9 @@ class RepositoryImpl @Inject constructor(
 ): Repository {
 
     override val notes = notesDao.readAll().map { notesDto ->
-        Response.Success(notesDto.map { noteDto ->
+        notesDto.map { noteDto ->
             noteDto.mapToNote()
-        })
+        }
     }
 
     override val itemsAbout = flow {
@@ -38,13 +38,9 @@ class RepositoryImpl @Inject constructor(
         }
     }
 
-    override val darkTheme = settingsStorage.darkTheme.map { isAble ->
-        Response.Success(isAble)
-    }
+    override val darkTheme = settingsStorage.darkTheme
 
-    override val bottomNavigation = settingsStorage.bottomNavigation.map { isAble ->
-        Response.Success(isAble)
-    }
+    override val bottomNavigation = settingsStorage.bottomNavigation
 
     override suspend fun addNote(note: Note) {
         notesDao.add(note.mapToNoteDto())

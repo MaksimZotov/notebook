@@ -6,10 +6,10 @@ import com.maksimzotov.notebook.domain.entities.response.Response
 import kotlinx.coroutines.flow.Flow
 
 interface Repository {
-    val notes: Flow<Response<List<Note>>>
+    val notes: Flow<List<Note>>
     val itemsAbout: Flow<Response<List<ItemAbout>>>
-    val darkTheme: Flow<Response<Boolean>>
-    val bottomNavigation: Flow<Response<Boolean>>
+    val darkTheme: Flow<Boolean>
+    val bottomNavigation: Flow<Boolean>
 
     suspend fun addNote(note: Note)
     suspend fun removeNote(note: Note)

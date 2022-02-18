@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="about_item_height">192dp</dimen>
+    <dimen name="about_item_image_padding_horizontal">96dp</dimen>
+    <dimen name="about_item_image_padding_vertical">16dp</dimen>
+    <dimen name="about_item_text_padding_horizontal">64dp</dimen>
+    <dimen name="about_item_text_padding_vertical">16dp</dimen>
+
+    <dimen name="switch_width">180dp</dimen>
+</resources>

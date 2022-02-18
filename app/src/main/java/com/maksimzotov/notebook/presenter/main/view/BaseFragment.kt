@@ -60,6 +60,7 @@ abstract class BaseFragment<VM: BaseViewModel, VB: ViewBinding>(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observeViewModel()
+        setupView()
     }
 
     override fun onDestroyView() {
@@ -89,6 +90,8 @@ abstract class BaseFragment<VM: BaseViewModel, VB: ViewBinding>(
             }
         }
     }
+
+    protected open fun setupView() { }
 
     protected fun <T> Flow<T>.observe(collector: FlowCollector<T>) {
         lifecycleScope.launch {

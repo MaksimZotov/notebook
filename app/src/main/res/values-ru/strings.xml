@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">Заметки</string>
+
     <string name="home">Главная</string>
     <string name="settings">Настройки</string>
     <string name="about">О приложении</string>
+
+    <string name="dark_theme">Тёмная Тема</string>
+    <string name="bottom_navigation">Нижняя Навигация</string>
 </resources>

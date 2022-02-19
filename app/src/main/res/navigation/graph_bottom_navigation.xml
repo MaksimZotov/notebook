@@ -2,9 +2,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/graph"
-    app:startDestination="@+id/graph_home">
+    app:startDestination="@+id/homeFragment">
 
-    <include app:graph="@navigation/graph_home"/>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.maksimzotov.notebook.presenter.view.home.HomeFragment"
+        android:label="HomeFragment" />
     <include app:graph="@navigation/graph_settings"/>
     <include app:graph="@navigation/graph_about"/>
 

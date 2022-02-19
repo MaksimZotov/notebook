@@ -66,8 +66,8 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(navController.graph, binding.drawerLayout)
 
         setupActionBarWithNavController(navController, appBarConfiguration)
-        binding.navView.setupWithNavController(navController)
-        binding.drawerNavView.setupWithNavController(navController)
+        binding.bottomNavigation.setupWithNavController(navController)
+        binding.drawerNavigation.setupWithNavController(navController)
     }
 
     private fun observeViewModel() {
@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             bottomNavigation.observe { bottomNavigationIsAble ->
-                binding.navView.isVisible = bottomNavigationIsAble
+                binding.bottomNavigation.isVisible = bottomNavigationIsAble
             }
         }
     }

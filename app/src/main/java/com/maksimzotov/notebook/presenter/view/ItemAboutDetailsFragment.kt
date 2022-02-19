@@ -1,5 +1,8 @@
 package com.maksimzotov.notebook.presenter.view
 
+import android.webkit.WebResourceRequest
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.maksimzotov.notebook.databinding.FragmentItemAboutDetailsBinding
@@ -29,7 +32,14 @@ class ItemAboutDetailsFragment: BaseFragment
 
     override fun setupView() {
         with(binding) {
-            webView.loadUrl(itemAbout.urlToImage)
+            webView.webViewClient = object : WebViewClient() {
+                override fun shouldOverrideUrlLoading(
+                    view: WebView?,
+                    request: WebResourceRequest?
+                ): Boolean = false
+            }
+            webView.loadUrl(itemAbout.urlToWebPage)
+
             title.setOnClickListener {
                 viewModel.showShortToast(title.text.toString())
             }

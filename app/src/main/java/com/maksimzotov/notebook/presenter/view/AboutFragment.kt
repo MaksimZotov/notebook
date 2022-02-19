@@ -2,6 +2,7 @@ package com.maksimzotov.notebook.presenter.view
 
 import com.maksimzotov.notebook.databinding.FragmentAboutBinding
 import com.maksimzotov.notebook.di.main.appComponent
+import com.maksimzotov.notebook.domain.entities.itemabout.ItemAbout
 import com.maksimzotov.notebook.domain.entities.response.Status
 import com.maksimzotov.notebook.presenter.adapters.ItemsAboutAdapter
 import com.maksimzotov.notebook.presenter.main.util.OnItemClickListener

@@ -14,8 +14,8 @@ class MainViewModel @Inject constructor(
 ): ViewModel() {
 
     val darkTheme = getDarkThemeUseCase.getDarkTheme()
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), false)
+        .stateIn(viewModelScope, SharingStarted.Eagerly, false)
 
     val bottomNavigation = getBottomNavigationUseCase.getBottomNavigation()
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), true)
+        .stateIn(viewModelScope, SharingStarted.Eagerly, true)
 }

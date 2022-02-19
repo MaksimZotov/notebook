@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 
     @Inject
     lateinit var viewModelFactory: BaseViewModelFactory<MainViewModel>
-    val viewModel: MainViewModel by lazy {
+    private val viewModel: MainViewModel by lazy {
         ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
     }
 

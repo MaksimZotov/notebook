@@ -7,10 +7,10 @@ import dagger.Module
 import javax.inject.Singleton
 
 @Module
-@Singleton
 interface DataBindModule {
 
     @Binds
+    @Singleton
     fun bindRepositoryImplToRepository(
         repositoryImpl: RepositoryImpl
     ): Repository

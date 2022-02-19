@@ -9,8 +9,9 @@ import com.maksimzotov.notebook.presenter.main.viewmodel.BaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class NotesListViewModel(
+class NotesListViewModel @Inject constructor(
     getNotesUseCase: GetNotesUseCase,
     private val removeNoteUseCase: RemoveNoteUseCase
 ): BaseViewModel() {

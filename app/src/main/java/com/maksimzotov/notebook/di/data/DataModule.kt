@@ -20,7 +20,6 @@ import retrofit2.Retrofit
 import javax.inject.Singleton
 
 @Module
-@Singleton
 class DataModule {
 
     @Provides

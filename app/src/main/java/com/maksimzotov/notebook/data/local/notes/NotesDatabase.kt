@@ -2,13 +2,11 @@ package com.maksimzotov.notebook.data.local.notes
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.maksimzotov.notebook.domain.entities.note.Note
-import com.maksimzotov.notebook.domain.entities.note.NoteWithAlarm
+import com.maksimzotov.notebook.data.local.notes.dto.NoteDto
 
 @Database(
     entities = [
-        Note::class,
-        NoteWithAlarm::class
+        NoteDto::class
     ],
     version = 1
 )

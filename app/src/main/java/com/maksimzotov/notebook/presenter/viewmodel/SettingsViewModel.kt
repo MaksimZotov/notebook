@@ -6,8 +6,9 @@ import com.maksimzotov.notebook.domain.usecases.settings.SetDarkThemeUseCase
 import com.maksimzotov.notebook.presenter.main.viewmodel.BaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class SettingsViewModel(
+class SettingsViewModel @Inject constructor(
     private val setDarkThemeUseCase: SetDarkThemeUseCase,
     private val setBottomNavigationUseCase: SetBottomNavigationUseCase
 ): BaseViewModel() {

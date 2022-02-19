@@ -18,7 +18,7 @@
         android:label="NoteDetailsFragment">
         <argument
             android:name="noteId"
-            app:argType="int" />
+            app:argType="integer" />
     </fragment>
 
 </navigation>

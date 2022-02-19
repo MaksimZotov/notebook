@@ -13,11 +13,11 @@ class SettingsViewModel @Inject constructor(
     private val setBottomNavigationUseCase: SetBottomNavigationUseCase
 ): BaseViewModel() {
 
-    fun setDarkTheme(isAble: Boolean) = viewModelScope.launch(Dispatchers.IO) {
+    fun setDarkTheme(isAble: Boolean) = viewModelScope.launch {
         setDarkThemeUseCase.setDarkTheme(isAble)
     }
 
-    fun setBottomNavigation(isAble: Boolean) = viewModelScope.launch(Dispatchers.IO) {
+    fun setBottomNavigation(isAble: Boolean) = viewModelScope.launch {
         setBottomNavigationUseCase.setBottomNavigation(isAble)
     }
 }

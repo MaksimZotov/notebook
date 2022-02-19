@@ -18,7 +18,7 @@ class NotesListViewModel @Inject constructor(
 
     val notes: StateFlow<List<Note>> = getNotesUseCase.getNotes().stateIn(emptyList())
 
-    fun removeNote(note: Note) = viewModelScope.launch(Dispatchers.IO) {
+    fun removeNote(note: Note) = viewModelScope.launch {
         removeNoteUseCase.removeNote(note)
     }
 }

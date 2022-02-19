@@ -2,8 +2,10 @@ package com.maksimzotov.notebook.presenter.view
 
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import com.maksimzotov.notebook.R
 import com.maksimzotov.notebook.databinding.FragmentNoteDetailsBinding
 import com.maksimzotov.notebook.di.main.appComponent
+import com.maksimzotov.notebook.domain.entities.note.NoteWithAlarm
 import com.maksimzotov.notebook.presenter.main.view.BaseFragment
 import com.maksimzotov.notebook.presenter.viewmodel.NoteDetailsViewModel
 import javax.inject.Inject
@@ -12,6 +14,11 @@ class NoteDetailsFragment: BaseFragment<NoteDetailsViewModel, FragmentNoteDetail
     NoteDetailsViewModel::class.java,
     FragmentNoteDetailsBinding::inflate
 ) {
+
+    companion object {
+        const val DEFAULT_NOTE_ID = -1
+    }
+
     private val args by navArgs<NoteDetailsFragmentArgs>()
     private val noteId: Int by lazy { args.noteId }
 
@@ -23,5 +30,32 @@ class NoteDetailsFragment: BaseFragment<NoteDetailsViewModel, FragmentNoteDetail
 
     override fun inject() {
         requireContext().appComponent.inject(this)
+    }
+
+    override fun setupView() {
+        with(binding) {
+            save.setOnClickListener {
+                val time =
+                    if (timeToAlarm.text == getString(R.string.time))
+                        null
+                    else
+                        timeToAlarm.text.toString()
+
+                viewModel.saveNote(title.text.toString(), text.text.toString(), time)
+            }
+        }
+    }
+
+    override fun observeViewModel() {
+        super.observeViewModel()
+        viewModel.note.observe { note ->
+            with(binding) {
+                title.setText(note.title)
+                text.setText(note.text)
+                if (note is NoteWithAlarm) {
+                    timeToAlarm.text = note.timeToAlarm.toString()
+                }
+            }
+        }
     }
 }

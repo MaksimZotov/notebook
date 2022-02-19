@@ -36,8 +36,8 @@ class ItemsAboutAdapter(
 ) : RecyclerView.Adapter<ItemAboutViewHolder>() {
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setData(cities: List<ItemAbout>) {
-        itemsAbout = cities
+    fun setData(itemsAbout: List<ItemAbout>) {
+        this.itemsAbout = itemsAbout
         notifyDataSetChanged()
     }
 

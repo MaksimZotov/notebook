@@ -8,7 +8,7 @@ import java.util.*
 
 @Entity(tableName = NotesConstants.DATABASE_NAME)
 open class NoteDto(
-    @PrimaryKey val _id: Int = 0,
+    @PrimaryKey(autoGenerate = true) open val _id: Int = 0,
     val title: String,
     val text: String,
     val time: Date,
@@ -16,4 +16,8 @@ open class NoteDto(
     fun mapToNote(): Note = Note(_id, title, text, time)
 }
 
-fun Note.mapToNoteDto(): NoteDto = NoteDto(_id, title, text, time)
+fun Note.mapToNoteDto(): NoteDto = NoteDto(
+    title = title,
+    text = text,
+    time = time
+)

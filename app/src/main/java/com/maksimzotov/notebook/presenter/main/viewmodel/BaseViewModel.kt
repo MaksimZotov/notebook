@@ -22,15 +22,15 @@ open class BaseViewModel: ViewModel() {
     val showLongToastFlow = showLongToastChannel.receiveAsFlow()
     val popBackStackFlow = popBackStackChannel.receiveAsFlow()
 
-    fun showShortToast(text: String) = viewModelScope.launch(Dispatchers.Main) {
+    fun showShortToast(text: String) = viewModelScope.launch {
         showShortToastChannel.send(ShowShortToastEvent(text))
     }
 
-    fun showLongToast(text: String) = viewModelScope.launch(Dispatchers.Main) {
+    fun showLongToast(text: String) = viewModelScope.launch {
         showLongToastChannel.send(ShowLongToastEvent(text))
     }
 
-    fun popBackStack() = viewModelScope.launch(Dispatchers.Main) {
+    fun popBackStack() = viewModelScope.launch {
         popBackStackChannel.send(PopBackstackEvent())
     }
 

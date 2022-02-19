@@ -9,4 +9,6 @@
     <dimen name="switch_width">180dp</dimen>
 
     <dimen name="button_bottom_padding">32dp</dimen>
+
+    <dimen name="fab_padding">24dp</dimen>
 </resources>

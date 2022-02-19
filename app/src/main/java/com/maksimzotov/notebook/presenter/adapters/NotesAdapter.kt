@@ -47,7 +47,7 @@ class NoteWithAlarmViewHolder(
             title.text = item.title
             text?.text = item.text
             time.text = item.time.toString()
-            timeToAlarm.text = item.timeToNotify.toString()
+            timeToAlarm.text = item.timeToAlarm.toString()
         }
     }
 }

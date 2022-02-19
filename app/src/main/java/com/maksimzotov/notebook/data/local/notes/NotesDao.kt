@@ -13,7 +13,7 @@ interface NotesDao {
     @Query("SELECT * FROM ${NotesConstants.DATABASE_NAME} WHERE _id = :id")
     fun read(id: Int): Flow<NoteDto>
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun add(note: NoteDto)
 
     @Update

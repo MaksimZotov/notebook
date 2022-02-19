@@ -64,6 +64,8 @@ abstract class BaseFragment<VM: BaseViewModel, VB: ViewBinding>(
         _binding = null
     }
 
+    protected abstract fun setupView()
+
     protected open fun observeViewModel() {
         with(viewModel) {
             showShortToastFlow.observe { shortToast ->
@@ -83,8 +85,6 @@ abstract class BaseFragment<VM: BaseViewModel, VB: ViewBinding>(
             }
         }
     }
-
-    protected open fun setupView() { }
 
     protected fun <T> Flow<T>.observe(collector: FlowCollector<T>) {
         lifecycleScope.launch {

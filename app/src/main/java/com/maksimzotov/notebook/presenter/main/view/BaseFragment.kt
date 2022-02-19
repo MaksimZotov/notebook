@@ -10,14 +10,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.*
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
-import com.google.android.material.snackbar.Snackbar
-import com.maksimzotov.notebook.presenter.main.di.BaseViewModelFactory
-import com.maksimzotov.notebook.presenter.main.util.Constants.EMPTY_STRING
 import com.maksimzotov.notebook.presenter.main.viewmodel.BaseViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.FlowCollector
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 abstract class BaseFragment<VM: BaseViewModel, VB: ViewBinding>(
     private val viewModelType: Class<VM>,
@@ -30,10 +26,6 @@ abstract class BaseFragment<VM: BaseViewModel, VB: ViewBinding>(
 
     private var _binding: VB? = null
     protected val binding get() = checkNotNull(_binding)
-
-    private val snackBar by lazy {
-        Snackbar.make(binding.root, EMPTY_STRING, Snackbar.LENGTH_INDEFINITE)
-    }
 
     private val navController by lazy {
         findNavController()
@@ -79,12 +71,6 @@ abstract class BaseFragment<VM: BaseViewModel, VB: ViewBinding>(
             }
             popBackStackFlow.observe {
                 navController.popBackStack()
-            }
-            snackBarIsActive.observe { isActive ->
-                if (isActive)
-                    snackBar.show()
-                else
-                    snackBar.dismiss()
             }
         }
     }

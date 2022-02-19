@@ -41,9 +41,6 @@ open class BaseViewModel: ViewModel() {
         popBackStackChannel.send(PopBackstackEvent())
     }
 
-    private val _snackBarIsActive = MutableStateFlow(true)
-    val snackBarIsActive = _snackBarIsActive.asStateFlow()
-
     protected fun <T> Flow<T>.stateIn(initialValue: T): StateFlow<T> =
         stateIn(viewModelScope, SharingStarted.WhileSubscribed(), initialValue)
 }

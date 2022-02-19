@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(navController.graph, binding.drawerLayout)
 
         setupActionBarWithNavController(navController, appBarConfiguration)
-        binding.bottonNavigation.setupWithNavController(navController)
+        binding.bottomNavigation.setupWithNavController(navController)
         binding.drawerNavView.setupWithNavController(navController)
     }
 
@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             bottomNavigation.observe { bottomNavigationIsAble ->
-                binding.bottonNavigation.isVisible = bottomNavigationIsAble
+                binding.bottomNavigation.isVisible = bottomNavigationIsAble
             }
         }
     }

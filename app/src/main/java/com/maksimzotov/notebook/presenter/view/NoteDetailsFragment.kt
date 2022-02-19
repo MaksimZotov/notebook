@@ -15,10 +15,6 @@ class NoteDetailsFragment: BaseFragment<NoteDetailsViewModel, FragmentNoteDetail
     FragmentNoteDetailsBinding::inflate
 ) {
 
-    companion object {
-        const val DEFAULT_NOTE_ID = -1
-    }
-
     private val args by navArgs<NoteDetailsFragmentArgs>()
     private val noteId: Int by lazy { args.noteId }
 

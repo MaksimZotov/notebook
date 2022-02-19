@@ -10,7 +10,6 @@ import com.maksimzotov.notebook.domain.usecases.notes.GetNoteUseCase
 import com.maksimzotov.notebook.domain.usecases.notes.UpdateNoteUseCase
 import com.maksimzotov.notebook.presenter.main.util.Constants.EMPTY_STRING
 import com.maksimzotov.notebook.presenter.main.viewmodel.BaseViewModel
-import com.maksimzotov.notebook.presenter.view.NoteDetailsFragment.Companion.DEFAULT_NOTE_ID
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
@@ -26,6 +25,8 @@ class NoteDetailsViewModel(
 
     companion object {
         private const val ASSISTED_NOTE_ID = "noteId"
+
+        const val DEFAULT_NOTE_ID = -1
     }
 
     val note = getNoteUseCase.getNote(noteId)

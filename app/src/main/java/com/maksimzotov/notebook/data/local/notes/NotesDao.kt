@@ -10,6 +10,9 @@ interface NotesDao {
     @Query("SELECT * FROM ${NotesConstants.DATABASE_NAME} ORDER BY _id ASC")
     fun readAll(): Flow<List<NoteDto>>
 
+    @Query("SELECT * FROM ${NotesConstants.DATABASE_NAME} WHERE _id = :id")
+    fun read(id: Int): Flow<NoteDto>
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun add(note: NoteDto)
 

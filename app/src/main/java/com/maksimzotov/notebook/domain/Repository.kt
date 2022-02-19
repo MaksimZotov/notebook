@@ -11,6 +11,7 @@ interface Repository {
     val darkTheme: Flow<Boolean>
     val bottomNavigation: Flow<Boolean>
 
+    fun getNote(id: Int): Flow<Note>
     suspend fun addNote(note: Note)
     suspend fun removeNote(note: Note)
     suspend fun updateNote(note: Note)

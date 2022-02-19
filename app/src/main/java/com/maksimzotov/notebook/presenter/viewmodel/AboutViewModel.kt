@@ -13,5 +13,5 @@ class AboutViewModel(
 ): BaseViewModel() {
 
     val itemsAbout: StateFlow<Response<List<ItemAbout>>> = getItemsAboutUseCase.getItemsAbout()
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), Response.Loading())
+        .stateIn(Response.Loading())
 }

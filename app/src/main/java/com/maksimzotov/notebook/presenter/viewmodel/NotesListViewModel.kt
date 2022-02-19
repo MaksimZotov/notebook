@@ -15,8 +15,7 @@ class NotesListViewModel(
     private val removeNoteUseCase: RemoveNoteUseCase
 ): BaseViewModel() {
 
-    val notes: StateFlow<List<Note>> = getNotesUseCase.getNotes()
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), emptyList())
+    val notes: StateFlow<List<Note>> = getNotesUseCase.getNotes().stateIn(emptyList())
 
     fun removeNote(note: Note) = viewModelScope.launch(Dispatchers.IO) {
         removeNoteUseCase.removeNote(note)

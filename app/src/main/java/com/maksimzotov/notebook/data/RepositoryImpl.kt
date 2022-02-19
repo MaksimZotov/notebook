@@ -8,7 +8,6 @@ import com.maksimzotov.notebook.domain.Repository
 import com.maksimzotov.notebook.domain.entities.note.Note
 import com.maksimzotov.notebook.domain.entities.response.Response
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject

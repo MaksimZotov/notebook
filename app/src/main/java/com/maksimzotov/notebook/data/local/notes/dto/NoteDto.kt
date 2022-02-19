@@ -6,7 +6,7 @@ import androidx.room.TypeConverters
 import com.maksimzotov.notebook.data.local.notes.NotesConstants
 import com.maksimzotov.notebook.data.local.notes.converters.DateConverter
 import com.maksimzotov.notebook.domain.entities.note.Note
-import com.maksimzotov.notebook.domain.entities.note.NoteWithAlarm
+import com.maksimzotov.notebook.domain.entities.note.NoteWithDeadline
 import java.util.*
 
 @Entity(tableName = NotesConstants.DATABASE_NAME)
@@ -16,22 +16,22 @@ data class NoteDto(
     val title: String,
     val text: String,
     val time: Date,
-    val timeToAlarm: Date? = null
+    val deadline: Date? = null
 ) {
     fun mapToNote(): Note =
-        if (timeToAlarm == null)
+        if (deadline == null)
             Note(_id, title, text, time)
         else
-            NoteWithAlarm(_id, title, text, time, timeToAlarm)
+            NoteWithDeadline(_id, title, text, time, deadline)
 }
 
 fun Note.mapToNoteDto(): NoteDto =
-    if (this is NoteWithAlarm)
+    if (this is NoteWithDeadline)
         NoteDto(
             title = title,
             text = text,
             time = time,
-            timeToAlarm = timeToAlarm
+            deadline = deadline
         )
     else
         NoteDto(

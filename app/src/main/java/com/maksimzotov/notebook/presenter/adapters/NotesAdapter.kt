@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.maksimzotov.notebook.databinding.ItemNoteBinding
-import com.maksimzotov.notebook.databinding.ItemNoteWithAlarmBinding
+import com.maksimzotov.notebook.databinding.ItemNoteWithDeadlineBinding
 import com.maksimzotov.notebook.domain.entities.note.Note
-import com.maksimzotov.notebook.domain.entities.note.NoteWithAlarm
+import com.maksimzotov.notebook.domain.entities.note.NoteWithDeadline
 import com.maksimzotov.notebook.presenter.main.util.OnItemClickListener
 
 sealed class BaseNoteViewHolder(
@@ -37,17 +37,17 @@ class NoteViewHolder(
     }
 }
 
-class NoteWithAlarmViewHolder(
-    private val binding: ItemNoteWithAlarmBinding,
+class NoteWithDeadlineViewHolder(
+    private val binding: ItemNoteWithDeadlineBinding,
     onCityClickListener: OnItemClickListener,
 ) : BaseNoteViewHolder(binding.root, onCityClickListener) {
 
-    fun bind(item: NoteWithAlarm) {
+    fun bind(item: NoteWithDeadline) {
         with(binding) {
             title.text = item.title
             text?.text = item.text
             time.text = item.time.toString()
-            timeToAlarm.text = item.timeToAlarm.toString()
+            deadline.text = item.deadline.toString()
         }
     }
 }
@@ -59,7 +59,7 @@ class NotesAdapter(
 
     companion object {
         private const val NOTE_TYPE = 1
-        private const val NOTE_WITH_ALARM_TYPE = 2
+        private const val NOTE_WITH_DEADLINE_TYPE = 2
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -82,8 +82,8 @@ class NotesAdapter(
                 onItemClickListener
             )
         else
-            NoteWithAlarmViewHolder(
-                ItemNoteWithAlarmBinding.inflate(
+            NoteWithDeadlineViewHolder(
+                ItemNoteWithDeadlineBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,
                     false
@@ -95,7 +95,7 @@ class NotesAdapter(
         val note = notes[position]
         if (holder is NoteViewHolder)
             holder.bind(notes[position])
-        else if (note is NoteWithAlarm && holder is NoteWithAlarmViewHolder) {
+        else if (note is NoteWithDeadline && holder is NoteWithDeadlineViewHolder) {
             holder.bind(note)
         }
     }
@@ -103,8 +103,8 @@ class NotesAdapter(
     override fun getItemCount(): Int = notes.size
 
     override fun getItemViewType(position: Int): Int =
-        if (notes[position] is NoteWithAlarm)
-            NOTE_WITH_ALARM_TYPE
+        if (notes[position] is NoteWithDeadline)
+            NOTE_WITH_DEADLINE_TYPE
         else
             NOTE_TYPE
 }

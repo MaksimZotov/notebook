@@ -32,7 +32,7 @@
     </ScrollView>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/time_to_alarm"
+        android:id="@+id/deadline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -45,7 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/time_to_alarm"
+        app:layout_constraintStart_toEndOf="@id/deadline"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginBottom="@dimen/button_bottom_padding"
         android:text="@string/save"/>

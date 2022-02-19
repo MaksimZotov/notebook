@@ -4,18 +4,16 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.maksimzotov.notebook.domain.entities.note.Note
-import com.maksimzotov.notebook.domain.entities.note.NoteWithAlarm
+import com.maksimzotov.notebook.domain.entities.note.NoteWithDeadline
 import com.maksimzotov.notebook.domain.usecases.notes.AddNoteUseCase
 import com.maksimzotov.notebook.domain.usecases.notes.GetNoteUseCase
 import com.maksimzotov.notebook.domain.usecases.notes.UpdateNoteUseCase
 import com.maksimzotov.notebook.presenter.main.util.Constants.EMPTY_STRING
 import com.maksimzotov.notebook.presenter.main.viewmodel.BaseViewModel
 import com.maksimzotov.notebook.presenter.view.NoteDetailsFragment.Companion.DEFAULT_NOTE_ID
-import com.maksimzotov.notebook.presenter.view.NoteDetailsFragmentArgs
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.*
 
@@ -33,14 +31,14 @@ class NoteDetailsViewModel(
     val note = getNoteUseCase.getNote(noteId)
         .stateIn(Note(0, EMPTY_STRING, EMPTY_STRING, Date(0)))
 
-    fun saveNote(title: String, text: String, timeToAlarm: String?) = viewModelScope.launch {
+    fun saveNote(title: String, text: String, deadline: String?) = viewModelScope.launch {
         if (noteId == DEFAULT_NOTE_ID)
-            if (timeToAlarm != null)
-                addNoteUseCase.addNote(NoteWithAlarm(
+            if (deadline != null)
+                addNoteUseCase.addNote(NoteWithDeadline(
                     title = title,
                     text = text,
                     time = Date(0),
-                    timeToAlarm = Date(timeToAlarm.length.toLong())
+                    deadline = Date(deadline.length.toLong())
                 ))
             else
                 addNoteUseCase.addNote(Note(
@@ -49,13 +47,13 @@ class NoteDetailsViewModel(
                     time = Date(0)
                 ))
         else
-            if (timeToAlarm != null)
-                updateNoteUseCase.updateNote(NoteWithAlarm(
+            if (deadline != null)
+                updateNoteUseCase.updateNote(NoteWithDeadline(
                     _id = noteId,
                     title = title,
                     text = text,
                     time = Date(0),
-                    timeToAlarm = Date(timeToAlarm.length.toLong())
+                    deadline = Date(deadline.length.toLong())
                 ))
             else
                 addNoteUseCase.addNote(Note(

@@ -5,7 +5,7 @@ import androidx.navigation.fragment.navArgs
 import com.maksimzotov.notebook.R
 import com.maksimzotov.notebook.databinding.FragmentNoteDetailsBinding
 import com.maksimzotov.notebook.di.main.appComponent
-import com.maksimzotov.notebook.domain.entities.note.NoteWithAlarm
+import com.maksimzotov.notebook.domain.entities.note.NoteWithDeadline
 import com.maksimzotov.notebook.presenter.main.view.BaseFragment
 import com.maksimzotov.notebook.presenter.viewmodel.NoteDetailsViewModel
 import javax.inject.Inject
@@ -36,10 +36,10 @@ class NoteDetailsFragment: BaseFragment<NoteDetailsViewModel, FragmentNoteDetail
         with(binding) {
             save.setOnClickListener {
                 val time =
-                    if (timeToAlarm.text == getString(R.string.time))
+                    if (deadline.text == getString(R.string.time))
                         null
                     else
-                        timeToAlarm.text.toString()
+                        deadline.text.toString()
 
                 viewModel.saveNote(title.text.toString(), text.text.toString(), time)
             }
@@ -52,8 +52,8 @@ class NoteDetailsFragment: BaseFragment<NoteDetailsViewModel, FragmentNoteDetail
             with(binding) {
                 title.setText(note.title)
                 text.setText(note.text)
-                if (note is NoteWithAlarm) {
-                    timeToAlarm.text = note.timeToAlarm.toString()
+                if (note is NoteWithDeadline) {
+                    deadline.text = note.deadline.toString()
                 }
             }
         }

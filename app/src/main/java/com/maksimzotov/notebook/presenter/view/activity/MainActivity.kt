@@ -3,29 +3,39 @@ package com.maksimzotov.notebook.presenter.view.activity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.findNavController
 import androidx.navigation.ui.*
 import com.maksimzotov.notebook.R
 import com.maksimzotov.notebook.databinding.ActivityMainBinding
+import com.maksimzotov.notebook.di.main.appComponent
+import com.maksimzotov.notebook.presenter.main.di.BaseViewModelFactory
 import com.maksimzotov.notebook.presenter.viewmodel.activity.MainViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.FlowCollector
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
-    private val viewModel by viewModels<MainViewModel>()
+
+    @Inject
+    lateinit var viewModelFactory: BaseViewModelFactory<MainViewModel>
+    val viewModel: MainViewModel by lazy {
+        ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
+    }
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        appComponent.inject(this)
+
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -56,7 +66,7 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(navController.graph, binding.drawerLayout)
 
         setupActionBarWithNavController(navController, appBarConfiguration)
-        binding.bottomNavigation.setupWithNavController(navController)
+        binding.navView.setupWithNavController(navController)
         binding.drawerNavView.setupWithNavController(navController)
     }
 
@@ -70,7 +80,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             bottomNavigation.observe { bottomNavigationIsAble ->
-                binding.bottomNavigation.isVisible = bottomNavigationIsAble
+                binding.navView.isVisible = bottomNavigationIsAble
             }
         }
     }

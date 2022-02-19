@@ -6,8 +6,9 @@ import com.maksimzotov.notebook.domain.usecases.settings.GetBottomNavigationUseC
 import com.maksimzotov.notebook.domain.usecases.settings.GetDarkThemeUseCase
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
+import javax.inject.Inject
 
-class MainViewModel(
+class MainViewModel @Inject constructor(
     getDarkThemeUseCase: GetDarkThemeUseCase,
     getBottomNavigationUseCase: GetBottomNavigationUseCase
 ): ViewModel() {
@@ -16,5 +17,5 @@ class MainViewModel(
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), false)
 
     val bottomNavigation = getBottomNavigationUseCase.getBottomNavigation()
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), false)
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), true)
 }

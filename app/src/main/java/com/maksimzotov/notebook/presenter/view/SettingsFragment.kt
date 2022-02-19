@@ -16,10 +16,10 @@ class SettingsFragment: FragmentWithoutParamsForVM<SettingsViewModel, FragmentSe
 
     override fun setupView() {
         with(binding) {
-            darkTheme.setOnCheckedChangeListener { _, isChecked ->
+            switchDarkTheme.setOnCheckedChangeListener { _, isChecked ->
                 viewModel.setDarkTheme(isChecked)
             }
-            bottomNavigation.setOnCheckedChangeListener { _, isChecked ->
+            switchBottomNavigation.setOnCheckedChangeListener { _, isChecked ->
                 viewModel.setBottomNavigation(isChecked)
             }
         }

@@ -56,14 +56,11 @@ class MainActivity : AppCompatActivity() {
         ) || super.onOptionsItemSelected(item)
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
-    }
-
     private fun setupNavigation() {
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        appBarConfiguration = AppBarConfiguration(navController.graph, binding.drawerLayout)
+        appBarConfiguration = AppBarConfiguration(
+            setOf(R.id.home, R.id.settings, R.id.about)
+        )
 
         setupActionBarWithNavController(navController, appBarConfiguration)
         binding.bottomNavigation.setupWithNavController(navController)

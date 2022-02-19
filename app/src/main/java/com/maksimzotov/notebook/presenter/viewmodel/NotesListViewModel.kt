@@ -6,6 +6,8 @@ import com.maksimzotov.notebook.domain.entities.response.Status
 import com.maksimzotov.notebook.domain.usecases.notes.GetNotesUseCase
 import com.maksimzotov.notebook.domain.usecases.notes.RemoveNoteUseCase
 import com.maksimzotov.notebook.presenter.main.viewmodel.BaseViewModel
+import com.maksimzotov.notebook.presenter.view.NoteDetailsFragment
+import com.maksimzotov.notebook.presenter.view.NotesListFragmentDirections
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -21,4 +23,14 @@ class NotesListViewModel @Inject constructor(
     fun removeNote(note: Note) = viewModelScope.launch {
         removeNoteUseCase.removeNote(note)
     }
+
+    fun navigateToNoteDetailsToAddNewNote() =
+        navigate(NotesListFragmentDirections.actionNotesListFragmentToNoteDetailsFragment(
+            NoteDetailsFragment.DEFAULT_NOTE_ID
+        ))
+
+    fun navigateToNoteDetailsToEditNoteWithId(id: Int) =
+        navigate(NotesListFragmentDirections.actionNotesListFragmentToNoteDetailsFragment(
+            id
+        ))
 }

@@ -23,20 +23,12 @@ class NotesListFragment: FragmentWithoutParamsForVM<NotesListViewModel, Fragment
         with(binding) {
             notes.adapter = adapter
             add.setOnClickListener {
-                val action =
-                    NotesListFragmentDirections.actionNotesListFragmentToNoteDetailsFragment(
-                        NoteDetailsFragment.DEFAULT_NOTE_ID
-                    )
-                navController.navigate(action)
+                viewModel.navigateToNoteDetailsToAddNewNote()
             }
         }
     }
 
     override fun onItemClick(position: Int) {
-        val note = adapter.notes[position]
-        val action = NotesListFragmentDirections.actionNotesListFragmentToNoteDetailsFragment(
-            note._id
-        )
-        navController.navigate(action)
+        viewModel.navigateToNoteDetailsToEditNoteWithId(adapter.notes[position]._id)
     }
 }

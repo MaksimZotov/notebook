@@ -35,7 +35,7 @@ abstract class BaseFragment<VM: BaseViewModel, VB: ViewBinding>(
         Snackbar.make(binding.root, EMPTY_STRING, Snackbar.LENGTH_INDEFINITE)
     }
 
-    protected val navController by lazy {
+    private val navController by lazy {
         findNavController()
     }
 
@@ -73,6 +73,9 @@ abstract class BaseFragment<VM: BaseViewModel, VB: ViewBinding>(
             }
             showLongToastFlow.observe { longToast ->
                 Toast.makeText(context, longToast.text, Toast.LENGTH_LONG).show()
+            }
+            navigateFlow.observe { navigateAction ->
+                navController.navigate(navigateAction.action)
             }
             popBackStackFlow.observe {
                 navController.popBackStack()

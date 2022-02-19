@@ -1,25 +1,28 @@
 package com.maksimzotov.notebook.presenter.main.viewmodel
 
-import androidx.lifecycle.*
-import kotlinx.coroutines.Dispatchers
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavDirections
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 open class BaseViewModel: ViewModel() {
     open class Event()
 
     class ShowShortToastEvent(val text: String): Event()
     class ShowLongToastEvent(val text: String): Event()
+    class NavigateEvent(val action: NavDirections): Event()
     class PopBackstackEvent(): Event()
 
-    private val showShortToastChannel = Channel<ShowShortToastEvent>(Channel.BUFFERED)
-    private val showLongToastChannel = Channel<ShowLongToastEvent>(Channel.BUFFERED)
-    private val popBackStackChannel = Channel<PopBackstackEvent>(Channel.BUFFERED)
+    private val showShortToastChannel = Channel<ShowShortToastEvent>()
+    private val showLongToastChannel = Channel<ShowLongToastEvent>()
+    private val navigateChannel = Channel<NavigateEvent>()
+    private val popBackStackChannel = Channel<PopBackstackEvent>()
 
     val showShortToastFlow = showShortToastChannel.receiveAsFlow()
     val showLongToastFlow = showLongToastChannel.receiveAsFlow()
+    val navigateFlow = navigateChannel.receiveAsFlow()
     val popBackStackFlow = popBackStackChannel.receiveAsFlow()
 
     fun showShortToast(text: String) = viewModelScope.launch {
@@ -28,6 +31,10 @@ open class BaseViewModel: ViewModel() {
 
     fun showLongToast(text: String) = viewModelScope.launch {
         showLongToastChannel.send(ShowLongToastEvent(text))
+    }
+
+    fun navigate(action: NavDirections) = viewModelScope.launch {
+        navigateChannel.send(NavigateEvent(action))
     }
 
     fun popBackStack() = viewModelScope.launch {

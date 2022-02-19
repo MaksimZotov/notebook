@@ -40,10 +40,6 @@ class AboutFragment: FragmentWithoutParamsForVM<AboutViewModel, FragmentAboutBin
     }
 
     override fun onItemClick(position: Int) {
-        val itemAbout = adapter.itemsAbout[position]
-        val action = AboutFragmentDirections.actionAboutFragmentToItemAboutDetailsFragment(
-            itemAbout.mapToParcelable()
-        )
-        navController.navigate(action)
+        viewModel.navigateToItemAboutDetails(adapter.itemsAbout[position])
     }
 }

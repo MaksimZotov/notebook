@@ -6,11 +6,11 @@ import com.maksimzotov.notebook.databinding.FragmentAboutBinding
 import com.maksimzotov.notebook.di.main.appComponent
 import com.maksimzotov.notebook.presenter.adapters.ItemsAboutAdapter
 import com.maksimzotov.notebook.presenter.main.util.OnItemClickListener
-import com.maksimzotov.notebook.presenter.main.view.BaseFragment
+import com.maksimzotov.notebook.presenter.main.view.FragmentWithoutParamsForVM
 import com.maksimzotov.notebook.presenter.parcelable.mapToParcelable
 import com.maksimzotov.notebook.presenter.viewmodel.AboutViewModel
 
-class AboutFragment: BaseFragment<AboutViewModel, FragmentAboutBinding>(
+class AboutFragment: FragmentWithoutParamsForVM<AboutViewModel, FragmentAboutBinding>(
     AboutViewModel::class.java,
     FragmentAboutBinding::inflate
 ), OnItemClickListener {

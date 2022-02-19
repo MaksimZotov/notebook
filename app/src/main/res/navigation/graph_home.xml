@@ -17,8 +17,8 @@
         android:name="com.maksimzotov.notebook.presenter.view.NoteDetailsFragment"
         android:label="NoteDetailsFragment">
         <argument
-            android:name="note"
-            app:argType="com.maksimzotov.notebook.presenter.parcelable.NoteParcelable" />
+            android:name="noteId"
+            app:argType="int" />
     </fragment>
 
 </navigation>

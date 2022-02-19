@@ -24,13 +24,9 @@ abstract class BaseFragment<VM: BaseViewModel, VB: ViewBinding>(
     private val inflateBinding: (LayoutInflater, ViewGroup?, Boolean) -> VB
 ): Fragment() {
 
-    abstract fun inject()
+    protected abstract fun inject()
 
-    @Inject
-    lateinit open var viewModelFactory: BaseViewModelFactory<VM>
-    protected open val viewModel: VM by lazy {
-        ViewModelProvider(this, viewModelFactory).get(viewModelType)
-    }
+    protected abstract val viewModel: VM
 
     private var _binding: VB? = null
     protected val binding get() = checkNotNull(_binding)

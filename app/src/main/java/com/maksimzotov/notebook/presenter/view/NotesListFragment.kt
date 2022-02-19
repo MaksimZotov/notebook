@@ -8,10 +8,11 @@ import com.maksimzotov.notebook.presenter.adapters.ItemsAboutAdapter
 import com.maksimzotov.notebook.presenter.adapters.NotesAdapter
 import com.maksimzotov.notebook.presenter.main.util.OnItemClickListener
 import com.maksimzotov.notebook.presenter.main.view.BaseFragment
+import com.maksimzotov.notebook.presenter.main.view.FragmentWithoutParamsForVM
 import com.maksimzotov.notebook.presenter.parcelable.mapToParcelable
 import com.maksimzotov.notebook.presenter.viewmodel.NotesListViewModel
 
-class NotesListFragment: BaseFragment<NotesListViewModel, FragmentNotesListBinding>(
+class NotesListFragment: FragmentWithoutParamsForVM<NotesListViewModel, FragmentNotesListBinding>(
     NotesListViewModel::class.java,
     FragmentNotesListBinding::inflate
 ), OnItemClickListener {
@@ -35,7 +36,7 @@ class NotesListFragment: BaseFragment<NotesListViewModel, FragmentNotesListBindi
     override fun onItemClick(position: Int) {
         val note = adapter.notes[position]
         val action = NotesListFragmentDirections.actionNotesListFragmentToNoteDetailsFragment(
-            note.mapToParcelable()
+            note._id
         )
         navController.navigate(action)
     }

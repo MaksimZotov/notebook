@@ -8,5 +8,5 @@ import javax.inject.Inject
 class GetNoteUseCase @Inject constructor(
     private val repository: Repository,
 ) {
-    fun getNote(id: Int): Flow<Note> = repository.getNote(id)
+    fun getNote(id: Int): Flow<Note?> = repository.getNote(id)
 }

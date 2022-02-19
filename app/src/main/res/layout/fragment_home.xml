@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container_notes_list"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:name="com.maksimzotov.notebook.presenter.view.NotesListFragment"
-        app:navGraph="@navigation/graph_home" />
+        android:layout_weight="382"
+        android:name="com.maksimzotov.notebook.presenter.view.NotesListFragment"/>
 
-</FrameLayout>
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment_container_note_details"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="618"
+        android:name="com.maksimzotov.notebook.presenter.view.NoteDetailsFragment"/>
+
+</LinearLayout>

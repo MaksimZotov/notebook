@@ -12,18 +12,18 @@ open class BaseViewModel: ViewModel() {
 
     class ShowShortToastEvent(val text: String): Event()
     class ShowLongToastEvent(val text: String): Event()
-    class NavigateEvent(val action: NavDirections): Event()
     class PopBackstackEvent(): Event()
+    class NavigateEvent(val action: NavDirections): Event()
 
     private val showShortToastChannel = Channel<ShowShortToastEvent>()
     private val showLongToastChannel = Channel<ShowLongToastEvent>()
-    private val navigateChannel = Channel<NavigateEvent>()
     private val popBackStackChannel = Channel<PopBackstackEvent>()
+    private val navigateChannel = Channel<NavigateEvent>()
 
     val showShortToastFlow = showShortToastChannel.receiveAsFlow()
     val showLongToastFlow = showLongToastChannel.receiveAsFlow()
-    val navigateFlow = navigateChannel.receiveAsFlow()
     val popBackStackFlow = popBackStackChannel.receiveAsFlow()
+    val navigateFlow = navigateChannel.receiveAsFlow()
 
     fun showShortToast(text: String) = viewModelScope.launch {
         showShortToastChannel.send(ShowShortToastEvent(text))
@@ -33,12 +33,12 @@ open class BaseViewModel: ViewModel() {
         showLongToastChannel.send(ShowLongToastEvent(text))
     }
 
-    fun navigate(action: NavDirections) = viewModelScope.launch {
-        navigateChannel.send(NavigateEvent(action))
-    }
-
     fun popBackStack() = viewModelScope.launch {
         popBackStackChannel.send(PopBackstackEvent())
+    }
+
+    protected fun navigate(action: NavDirections) = viewModelScope.launch {
+        navigateChannel.send(NavigateEvent(action))
     }
 
     protected fun <T> Flow<T>.stateIn(initialValue: T): StateFlow<T> =

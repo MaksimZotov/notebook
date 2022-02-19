@@ -41,8 +41,8 @@ class RepositoryImpl @Inject constructor(
 
     override val bottomNavigation = settingsStorage.bottomNavigation
 
-    override fun getNote(id: Int): Flow<Note> = notesDao.read(id).map { noteDto ->
-        noteDto.mapToNote()
+    override fun getNote(id: Int): Flow<Note?> = notesDao.read(id).map { noteDto ->
+        noteDto?.mapToNote()
     }
 
     override suspend fun addNote(note: Note) {

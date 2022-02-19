@@ -6,7 +6,6 @@ import com.maksimzotov.notebook.domain.usecases.notes.GetNotesUseCase
 import com.maksimzotov.notebook.domain.usecases.notes.RemoveNoteUseCase
 import com.maksimzotov.notebook.presenter.main.viewmodel.BaseViewModel
 import com.maksimzotov.notebook.presenter.view.NotesListFragmentDirections
-import com.maksimzotov.notebook.presenter.viewmodel.NoteDetailsViewModel.Companion.DEFAULT_NOTE_ID
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -22,13 +21,14 @@ class NotesListViewModel @Inject constructor(
         removeNoteUseCase.removeNote(note)
     }
 
-    fun navigateToNoteDetailsToAddNewNote() =
-        navigate(NotesListFragmentDirections.actionNotesListFragmentToNoteDetailsFragment(
-            DEFAULT_NOTE_ID
-        ))
 
-    fun navigateToNoteDetailsToEditNoteWithId(id: Int) =
-        navigate(NotesListFragmentDirections.actionNotesListFragmentToNoteDetailsFragment(
-            id
-        ))
+    fun navigateToNoteDetailsToAddNewNote() {
+        NoteDetailsViewModel.CURRENT_NOTE_ID = NoteDetailsViewModel.DEFAULT_NOTE_ID
+        navigate(NotesListFragmentDirections.actionNotesListFragmentToNoteDetailsFragment())
+    }
+
+    fun navigateToNoteDetailsToEditNoteWithId(id: Int) {
+        NoteDetailsViewModel.CURRENT_NOTE_ID = id
+        navigate(NotesListFragmentDirections.actionNotesListFragmentToNoteDetailsFragment())
+    }
 }

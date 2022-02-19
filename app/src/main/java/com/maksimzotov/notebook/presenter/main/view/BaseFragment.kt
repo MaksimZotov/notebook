@@ -66,11 +66,11 @@ abstract class BaseFragment<VM: BaseViewModel, VB: ViewBinding>(
             showLongToastFlow.observe { longToast ->
                 Toast.makeText(context, longToast.text, Toast.LENGTH_LONG).show()
             }
-            navigateFlow.observe { navigateAction ->
-                navController.navigate(navigateAction.action)
-            }
             popBackStackFlow.observe {
                 navController.popBackStack()
+            }
+            navigateFlow.observe { navigateAction ->
+                navController.navigate(navigateAction.action)
             }
         }
     }

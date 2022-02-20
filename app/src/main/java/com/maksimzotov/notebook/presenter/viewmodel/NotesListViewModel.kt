@@ -21,14 +21,13 @@ class NotesListViewModel @Inject constructor(
         removeNoteUseCase.removeNote(note)
     }
 
+    fun navigateToNoteDetailsToAddNewNote() =
+        navigate(NotesListFragmentDirections.actionNotesListFragmentToNoteDetailsFragment(
+            NoteDetailsViewModel.NOTE_TO_ADD_ID
+        ))
 
-    fun navigateToNoteDetailsToAddNewNote() {
-        NoteDetailsViewModel.CURRENT_NOTE_ID = NoteDetailsViewModel.DEFAULT_NOTE_ID
-        navigate(NotesListFragmentDirections.actionNotesListFragmentToNoteDetailsFragment())
-    }
-
-    fun navigateToNoteDetailsToEditNoteWithId(id: Int) {
-        NoteDetailsViewModel.CURRENT_NOTE_ID = id
-        navigate(NotesListFragmentDirections.actionNotesListFragmentToNoteDetailsFragment())
-    }
+    fun navigateToNoteDetailsToEditNoteWithId(id: Int) =
+        navigate(NotesListFragmentDirections.actionNotesListFragmentToNoteDetailsFragment(
+            id
+        ))
 }

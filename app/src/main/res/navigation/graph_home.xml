@@ -16,6 +16,9 @@
         android:id="@+id/noteDetailsFragment"
         android:name="com.maksimzotov.notebook.presenter.view.NoteDetailsFragment"
         android:label="NoteDetailsFragment">
+        <argument
+            android:name="noteId"
+            app:argType="integer" />
     </fragment>
 
 </navigation>

@@ -1,8 +1,8 @@
 package com.maksimzotov.notebook.presenter.adapters
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.RoundedCornersTransformation
@@ -37,10 +37,11 @@ class ItemsAboutAdapter(
     private val onItemClickListener: OnItemClickListener,
 ) : RecyclerView.Adapter<ItemAboutViewHolder>() {
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun setData(itemsAbout: List<ItemAbout>) {
-        this.itemsAbout = itemsAbout
-        notifyDataSetChanged()
+    fun setData(newItemsAbout: List<ItemAbout>) {
+        val diffUtil = DiffUtilItemsAbout(itemsAbout, newItemsAbout)
+        val diffResults = DiffUtil.calculateDiff(diffUtil)
+        itemsAbout = newItemsAbout
+        diffResults.dispatchUpdatesTo(this)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemAboutViewHolder {
@@ -61,4 +62,20 @@ class ItemsAboutAdapter(
     override fun getItemCount(): Int {
         return itemsAbout.size
     }
+}
+
+class DiffUtilItemsAbout(
+    private val oldList: List<ItemAbout>,
+    private val newList: List<ItemAbout>
+): DiffUtil.Callback() {
+
+    override fun getOldListSize(): Int = oldList.size
+
+    override fun getNewListSize(): Int = newList.size
+
+    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean =
+        oldList[oldItemPosition].urlToWebPage == newList[newItemPosition].urlToWebPage
+
+    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean =
+        oldList[oldItemPosition] == newList[newItemPosition]
 }

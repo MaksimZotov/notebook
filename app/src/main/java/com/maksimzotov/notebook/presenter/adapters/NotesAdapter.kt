@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.maksimzotov.notebook.databinding.ItemNoteBinding
 import com.maksimzotov.notebook.databinding.ItemNoteWithDeadlineBinding
@@ -77,10 +78,11 @@ class NotesAdapter(
         private const val NOTE_WITH_DEADLINE_TYPE = 2
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun setData(notes: List<Note>) {
-        this.notes = notes
-        notifyDataSetChanged()
+    fun setData(newNotes: List<Note>) {
+        val diffUtil = DiffUtilNotes(notes, newNotes)
+        val diffResults = DiffUtil.calculateDiff(diffUtil)
+        notes = newNotes
+        diffResults.dispatchUpdatesTo(this)
     }
 
     override fun onCreateViewHolder(
@@ -124,4 +126,20 @@ class NotesAdapter(
             NOTE_WITH_DEADLINE_TYPE
         else
             NOTE_TYPE
+}
+
+class DiffUtilNotes(
+    private val oldList: List<Note>,
+    private val newList: List<Note>
+): DiffUtil.Callback() {
+
+    override fun getOldListSize(): Int = oldList.size
+
+    override fun getNewListSize(): Int = newList.size
+
+    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean =
+        oldList[oldItemPosition]._id == newList[newItemPosition]._id
+
+    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean =
+        oldList[oldItemPosition].time == newList[newItemPosition].time
 }

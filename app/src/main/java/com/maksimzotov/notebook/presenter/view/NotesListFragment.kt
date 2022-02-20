@@ -28,6 +28,13 @@ class NotesListFragment: FragmentWithoutParamsForVM<NotesListViewModel, Fragment
         }
     }
 
+    override fun observeViewModel() {
+        super.observeViewModel()
+        viewModel.notes.observe { notes ->
+            adapter.setData(notes)
+        }
+    }
+
     override fun onItemClick(position: Int) {
         viewModel.navigateToNoteDetailsToEditNoteWithId(adapter.notes[position]._id)
     }

@@ -62,5 +62,7 @@ class NoteDetailsViewModel @Inject constructor(
                     text = text,
                     time = Date(0)
                 ))
+
+        popBackStack()
     }
 }

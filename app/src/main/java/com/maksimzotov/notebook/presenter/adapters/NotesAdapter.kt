@@ -9,12 +9,16 @@ import com.maksimzotov.notebook.databinding.ItemNoteBinding
 import com.maksimzotov.notebook.databinding.ItemNoteWithDeadlineBinding
 import com.maksimzotov.notebook.domain.entities.note.Note
 import com.maksimzotov.notebook.domain.entities.note.NoteWithDeadline
+import com.maksimzotov.notebook.presenter.main.util.DateConverter
 import com.maksimzotov.notebook.presenter.main.util.OnItemClickListener
 
 sealed class BaseNoteViewHolder(
     root: View,
     private val onCityClickListener: OnItemClickListener,
 ) : RecyclerView.ViewHolder(root) {
+
+    @SuppressLint("SimpleDateFormat")
+    val dateFormat = DateConverter()
 
     init {
         root.setOnClickListener {
@@ -32,7 +36,7 @@ class NoteViewHolder(
         with(binding) {
             title.text = item.title
             text?.text = item.text
-            time.text = item.time.toString()
+            time.text = dateFormat.format(item.time)
         }
     }
 }
@@ -46,8 +50,8 @@ class NoteWithDeadlineViewHolder(
         with(binding) {
             title.text = item.title
             text?.text = item.text
-            time.text = item.time.toString()
-            deadline.text = item.deadline.toString()
+            time.text = dateFormat.format(item.time)
+            deadline.text = dateFormat.format(item.deadline)
         }
     }
 }

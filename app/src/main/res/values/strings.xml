@@ -8,6 +8,7 @@
     <string name="time">Time</string>
     <string name="save">Save</string>
     <string name="add">Add</string>
+    <string name="deadline">Deadline</string>
 
     <string name="dark_theme">Dark Theme</string>
     <string name="bottom_navigation">Bottom Navigation</string>

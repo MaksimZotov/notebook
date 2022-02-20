@@ -1,5 +1,6 @@
 package com.maksimzotov.notebook.presenter.view
 
+import android.app.DatePickerDialog
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.maksimzotov.notebook.R
@@ -34,13 +35,28 @@ class NoteDetailsFragment: BaseFragment
     override fun setupView() {
         with(binding) {
             save.setOnClickListener {
-                val time =
-                    if (deadline.text == getString(R.string.time))
-                        null
-                    else
-                        deadline.text.toString()
+                viewModel.saveNote(
+                    title.text.toString(),
+                    text.text.toString(),
+                    deadline.text.toString()
+                )
+            }
 
-                viewModel.saveNote(title.text.toString(), text.text.toString(), time)
+            deadline.setOnClickListener {
+                val date = viewModel.getDeadlineDayMonthYearByText(deadline.text.toString())
+                val day = date[0]
+                val month = date[1]
+                val year = date[2]
+
+                DatePickerDialog(
+                    requireActivity(),
+                    { _, _year, _month, _day ->
+                        deadline.text = viewModel.getTextByYearMonthDay(_year, _month, _day)
+                    },
+                    year,
+                    month - 1,
+                    day
+                ).show()
             }
         }
     }
@@ -51,9 +67,11 @@ class NoteDetailsFragment: BaseFragment
             with(binding) {
                 title.setText(note?.title)
                 text.setText(note?.text)
-                if (note is NoteWithDeadline) {
-                    deadline.text = note.deadline.toString()
-                }
+
+                if (note is NoteWithDeadline)
+                    deadline.text = viewModel.formatDate(note.deadline)
+                else
+                    deadline.text = getString(R.string.deadline)
             }
         }
     }

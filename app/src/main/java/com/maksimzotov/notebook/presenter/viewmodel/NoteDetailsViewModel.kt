@@ -9,11 +9,13 @@ import com.maksimzotov.notebook.domain.entities.note.NoteWithDeadline
 import com.maksimzotov.notebook.domain.usecases.notes.AddNoteUseCase
 import com.maksimzotov.notebook.domain.usecases.notes.GetNoteUseCase
 import com.maksimzotov.notebook.domain.usecases.notes.UpdateNoteUseCase
+import com.maksimzotov.notebook.presenter.main.util.DateConverter
 import com.maksimzotov.notebook.presenter.main.util.ResourceProvider
 import com.maksimzotov.notebook.presenter.main.viewmodel.BaseViewModel
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
@@ -32,47 +34,62 @@ class NoteDetailsViewModel @Inject constructor(
         const val NOTE_TO_ADD_ID = -1
     }
 
-    val note = getNoteUseCase.getNote(noteId)
+    private val dateConverter = DateConverter()
+
+    val note: StateFlow<Note?> = getNoteUseCase.getNote(noteId)
         .stateIn(null)
 
-    fun saveNote(title: String, text: String, deadline: String?) = viewModelScope.launch {
+    fun saveNote(title: String, text: String, deadline: String) = viewModelScope.launch {
         if (title.isBlank()) {
             showShortToast(resourceProvider.getString(R.string.title_is_blank))
             return@launch
         }
         if (noteId == NOTE_TO_ADD_ID)
-            if (deadline != null)
+            if (deadline != resourceProvider.getString(R.string.deadline))
                 addNoteUseCase.addNote(NoteWithDeadline(
                     title = title,
                     text = text,
-                    time = Date(0),
-                    deadline = Date(deadline.length.toLong())
+                    time = Calendar.getInstance().time,
+                    deadline = dateConverter.parse(deadline)
                 ))
             else
                 addNoteUseCase.addNote(Note(
                     title = title,
                     text = text,
-                    time = Date(0)
+                    time = Calendar.getInstance().time
                 ))
         else
-            if (deadline != null)
+            if (deadline != resourceProvider.getString(R.string.deadline))
                 updateNoteUseCase.updateNote(NoteWithDeadline(
                     _id = noteId,
                     title = title,
                     text = text,
-                    time = Date(0),
-                    deadline = Date(deadline.length.toLong())
+                    time = Calendar.getInstance().time,
+                    deadline = dateConverter.parse(deadline)
                 ))
             else
                 addNoteUseCase.addNote(Note(
                     _id = noteId,
                     title = title,
                     text = text,
-                    time = Date(0)
+                    time = Calendar.getInstance().time
                 ))
 
         popBackStack()
     }
+
+    fun formatDate(date: Date) = dateConverter.format(date)
+
+    fun getDeadlineDayMonthYearByText(text: String): List<Int> =
+        dateConverter.getDayMonthYearByText(
+            if (text == resourceProvider.getString(R.string.deadline))
+                dateConverter.format(Calendar.getInstance().time)
+            else
+                text
+        )
+
+    fun getTextByYearMonthDay(day: Int, month: Int, year: Int): String =
+        dateConverter.getTextByYearMonthDay(day, month, year)
 
     class Factory @AssistedInject constructor(
         @Assisted(ASSISTED_NOTE_ID) private val noteId: Int,

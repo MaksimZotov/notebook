@@ -8,6 +8,7 @@
     <string name="time">Время</string>
     <string name="save">Сохранить</string>
     <string name="add">Добавить</string>
+    <string name="deadline">Срок</string>
 
     <string name="dark_theme">Тёмная Тема</string>
     <string name="bottom_navigation">Нижняя Навигация</string>

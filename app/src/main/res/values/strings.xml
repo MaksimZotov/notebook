@@ -11,4 +11,6 @@
 
     <string name="dark_theme">Dark Theme</string>
     <string name="bottom_navigation">Bottom Navigation</string>
+
+    <string name="title_is_blank">Title is blank</string>
 </resources>

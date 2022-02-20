@@ -11,4 +11,6 @@
 
     <string name="dark_theme">Тёмная Тема</string>
     <string name="bottom_navigation">Нижняя Навигация</string>
+
+    <string name="title_is_blank">Заголовок пустой</string>
 </resources>

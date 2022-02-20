@@ -4,7 +4,7 @@
     style="@style/Shape"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/shape_important">
+    android:background="@drawable/ripple_effect_shape_important">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/deadline"

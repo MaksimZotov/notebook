@@ -4,4 +4,5 @@
     <attr name="colorShapeImportant" format="color" />
     <attr name="colorGradientShapeTop" format="color" />
     <attr name="colorGradientShapeBottom" format="color" />
+    <attr name="colorRippleEffect" format="color" />
 </resources>

@@ -42,8 +42,9 @@ class ItemAboutDetailsFragment: BaseFragment
             }
             webView.loadUrl(itemAbout.urlToWebPage)
 
-            title.setOnClickListener {
+            title.setOnLongClickListener {
                 viewModel.showShortToast(title.text.toString())
+                return@setOnLongClickListener true
             }
         }
     }

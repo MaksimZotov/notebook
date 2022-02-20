@@ -16,5 +16,6 @@
         <item name="colorShapeImportant">@color/red</item>
         <item name="colorGradientShapeTop">@color/yellow_top</item>
         <item name="colorGradientShapeBottom">@color/yellow_bottom</item>
+        <item name="colorRippleEffect">@color/black</item>
     </style>
 </resources>

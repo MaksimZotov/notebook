@@ -21,4 +21,9 @@
 
     <string name="title">Title</string>
     <string name="text">Text</string>
+
+    <string name="notes">Notes</string>
+    <string name="note_editor">Editor</string>
+    <string name="about_stub">About (Stub)</string>
+    <string name="about_details">Details</string>
 </resources>

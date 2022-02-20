@@ -21,4 +21,9 @@
 
     <string name="title">Заголовок</string>
     <string name="text">Текст</string>
+
+    <string name="notes">Заметки</string>
+    <string name="note_editor">Редактор</string>
+    <string name="about_stub">О Приложении (Заглушка)</string>
+    <string name="about_details">Подробности</string>
 </resources>

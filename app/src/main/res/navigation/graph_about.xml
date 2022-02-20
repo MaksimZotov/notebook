@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/aboutFragment"
         android:name="com.maksimzotov.notebook.presenter.view.AboutFragment"
-        android:label="AboutFragment" >
+        android:label="@string/about_stub" >
         <action
             android:id="@+id/action_aboutFragment_to_itemAboutDetailsFragment"
             app:destination="@id/itemAboutDetailsFragment" />
@@ -15,7 +15,7 @@
     <fragment
         android:id="@+id/itemAboutDetailsFragment"
         android:name="com.maksimzotov.notebook.presenter.view.ItemAboutDetailsFragment"
-        android:label="ItemAboutDetailsFragment">
+        android:label="@string/about_details">
         <argument
             android:name="itemAbout"
             app:argType="com.maksimzotov.notebook.presenter.parcelable.ItemAboutParcelable" />

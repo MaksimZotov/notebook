@@ -7,5 +7,5 @@
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.maksimzotov.notebook.presenter.view.SettingsFragment"
-        android:label="SettingsFragment" />
+        android:label="@string/settings" />
 </navigation>

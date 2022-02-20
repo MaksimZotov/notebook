@@ -12,5 +12,9 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="colorShape">@color/dark_yellow</item>
+        <item name="colorShapeImportant">@color/dark_red</item>
+        <item name="colorGradientShapeTop">@color/dark_yellow_top</item>
+        <item name="colorGradientShapeBottom">@color/dark_yellow_bottom</item>
     </style>
 </resources>

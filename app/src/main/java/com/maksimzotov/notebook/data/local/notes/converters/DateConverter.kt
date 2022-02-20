@@ -10,10 +10,10 @@ class DateConverter {
     private val typeDate = object : TypeToken<Date>() {}.type
 
     @TypeConverter
-    fun fromDate(date: Date): String =
+    fun fromDate(date: Date?): String =
         gson.toJson(date)
 
     @TypeConverter
-    fun toDate(date: String): Date =
+    fun toDate(date: String): Date? =
         gson.fromJson(date, typeDate)
 }

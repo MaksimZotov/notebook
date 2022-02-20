@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Shape">
+        <item name="android:elevation">@dimen/elevation</item>
+        <item name="android:layout_margin">@dimen/shape_padding</item>
+    </style>
+    <style name="TextView">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:elevation">@dimen/elevation</item>
+        <item name="android:layout_margin">@dimen/nested_shape_padding</item>
+        <item name="android:paddingStart">@dimen/nested_shape_padding</item>
+        <item name="android:paddingEnd">@dimen/nested_shape_padding</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+</resources>

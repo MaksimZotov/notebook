@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="colorShape" format="color" />
+    <attr name="colorShapeImportant" format="color" />
+    <attr name="colorGradientShapeTop" format="color" />
+    <attr name="colorGradientShapeBottom" format="color" />
+</resources>

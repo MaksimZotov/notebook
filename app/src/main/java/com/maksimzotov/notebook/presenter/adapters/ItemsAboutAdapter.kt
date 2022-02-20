@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import coil.transform.RoundedCornersTransformation
 import com.maksimzotov.notebook.databinding.ItemAboutBinding
 import com.maksimzotov.notebook.domain.entities.itemabout.ItemAbout
 import com.maksimzotov.notebook.presenter.main.util.OnItemClickListener
@@ -24,7 +25,8 @@ class ItemAboutViewHolder(
         with(binding) {
             title.text = item.title
             image.load(item.urlToImage) {
-                crossfade(true)
+                crossfade(500)
+                transformations(RoundedCornersTransformation(25f))
             }
         }
     }

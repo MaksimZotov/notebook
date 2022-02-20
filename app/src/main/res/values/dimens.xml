@@ -11,4 +11,13 @@
     <dimen name="button_bottom_padding">32dp</dimen>
 
     <dimen name="fab_padding">24dp</dimen>
+
+    <dimen name="elevation">8dp</dimen>
+
+    <dimen name="shape_corner">8dp</dimen>
+    <dimen name="shape_padding">8dp</dimen>
+    <dimen name="nested_shape_padding">8dp</dimen>
+    <dimen name="nested_shape_corner">4dp</dimen>
+
+    <dimen name="width_deadline">128dp</dimen>
 </resources>

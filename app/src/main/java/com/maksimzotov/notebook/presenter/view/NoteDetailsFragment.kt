@@ -54,7 +54,7 @@ class NoteDetailsFragment: BaseFragment
                         deadline.text = viewModel.getTextByYearMonthDay(_day, _month, _year)
                     },
                     year,
-                    month,
+                    month - 1,
                     day
                 ).show()
             }

@@ -2,7 +2,8 @@ package com.maksimzotov.notebook.data
 
 import com.maksimzotov.notebook.data.local.SettingsStorage
 import com.maksimzotov.notebook.data.local.notes.NotesDao
-import com.maksimzotov.notebook.data.local.notes.dto.mapToNoteDto
+import com.maksimzotov.notebook.data.local.notes.dto.mapToNoteDtoWithId
+import com.maksimzotov.notebook.data.local.notes.dto.mapToNoteDtoWithoutId
 import com.maksimzotov.notebook.data.remote.about.AboutApi
 import com.maksimzotov.notebook.domain.Repository
 import com.maksimzotov.notebook.domain.entities.note.Note
@@ -46,7 +47,7 @@ class RepositoryImpl @Inject constructor(
     }
 
     override suspend fun addNote(note: Note) {
-        notesDao.add(note.mapToNoteDto())
+        notesDao.add(note.mapToNoteDtoWithoutId())
     }
 
     override suspend fun removeNote(noteId: Int) {
@@ -54,7 +55,7 @@ class RepositoryImpl @Inject constructor(
     }
 
     override suspend fun updateNote(note: Note) {
-        notesDao.update(note.mapToNoteDto())
+        notesDao.update(note.mapToNoteDtoWithId())
     }
 
     override suspend fun setDarkTheme(isAble: Boolean) {

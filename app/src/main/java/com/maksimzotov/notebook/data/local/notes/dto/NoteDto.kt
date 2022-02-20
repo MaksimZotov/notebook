@@ -25,7 +25,22 @@ data class NoteDto(
             NoteWithDeadline(_id, title, text, time, deadline)
 }
 
-fun Note.mapToNoteDto(): NoteDto =
+fun Note.mapToNoteDtoWithoutId(): NoteDto =
+    if (this is NoteWithDeadline)
+        NoteDto(
+            title = title,
+            text = text,
+            time = time,
+            deadline = deadline
+        )
+    else
+        NoteDto(
+            title = title,
+            text = text,
+            time = time
+        )
+
+fun Note.mapToNoteDtoWithId(): NoteDto =
     if (this is NoteWithDeadline)
         NoteDto(
             _id = _id,

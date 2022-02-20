@@ -24,7 +24,7 @@ class RemoveDialogFragment : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog =
         activity?.let {
             AlertDialog.Builder(it)
-                .setMessage("${getString(R.string.do_you_want_to_remove)}?")
+                .setMessage(getString(R.string.do_you_want_to_remove))
                 .setPositiveButton(R.string.yes) { _, _ ->
                     setFragmentResult(
                         REMOVE_KEY,

@@ -16,6 +16,7 @@ class NoteDetailsFragment: BaseFragment
     FragmentNoteDetailsBinding::inflate
 ) {
 
+    // ViewModel Initialization START **************************************
     private val args by navArgs<NoteDetailsFragmentArgs>()
     private val noteId by lazy { args.noteId }
 
@@ -24,6 +25,7 @@ class NoteDetailsFragment: BaseFragment
     override val viewModel by viewModels<NoteDetailsViewModel> {
         factory.create(noteId)
     }
+    // **************************************** ViewModel Initialization END
 
     override fun inject() {
         requireContext().appComponent.inject(this)

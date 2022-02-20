@@ -17,6 +17,7 @@ class ItemAboutDetailsFragment: BaseFragment
     FragmentItemAboutDetailsBinding::inflate
 ) {
 
+    // ViewModel Initialization START **************************************
     private val args by navArgs<ItemAboutDetailsFragmentArgs>()
     private val itemAbout by lazy { args.itemAbout.mapToItemAbout() }
 
@@ -25,6 +26,7 @@ class ItemAboutDetailsFragment: BaseFragment
     override val viewModel by viewModels<ItemAboutDetailsViewModel> {
         factory.create(itemAbout)
     }
+    // **************************************** ViewModel Initialization END
 
     override fun inject() {
         requireContext().appComponent.inject(this)

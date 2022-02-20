@@ -11,6 +11,9 @@
         <action
             android:id="@+id/action_notesListFragment_to_noteDetailsFragment"
             app:destination="@id/noteDetailsFragment" />
+        <action
+            android:id="@+id/action_notesListFragment_to_removeDialogFragment"
+            app:destination="@id/removeDialogFragment" />
     </fragment>
     <fragment
         android:id="@+id/noteDetailsFragment"
@@ -20,5 +23,12 @@
             android:name="noteId"
             app:argType="integer" />
     </fragment>
+    <dialog
+        android:id="@+id/removeDialogFragment"
+        android:name="com.maksimzotov.notebook.presenter.view.dialogs.RemoveDialogFragment">
+        <argument
+            android:name="noteId"
+            app:argType="integer"/>
+    </dialog>
 
 </navigation>

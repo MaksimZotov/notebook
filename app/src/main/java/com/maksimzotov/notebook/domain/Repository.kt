@@ -13,7 +13,7 @@ interface Repository {
 
     fun getNote(id: Int): Flow<Note?>
     suspend fun addNote(note: Note)
-    suspend fun removeNote(note: Note)
+    suspend fun removeNote(noteId: Int)
     suspend fun updateNote(note: Note)
     suspend fun setDarkTheme(isAble: Boolean)
     suspend fun setBottomNavigation(isAble: Boolean)

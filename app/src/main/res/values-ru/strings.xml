@@ -14,4 +14,8 @@
     <string name="bottom_navigation">Нижняя Навигация</string>
 
     <string name="title_is_blank">Заголовок пустой</string>
+
+    <string name="do_you_want_to_remove">Вы хотите удалить?</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
 </resources>

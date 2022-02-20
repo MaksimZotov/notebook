@@ -19,6 +19,6 @@ interface NotesDao {
     @Update
     fun update(note: NoteDto)
 
-    @Delete
-    fun remove(note: NoteDto)
+    @Query("DELETE FROM ${NotesConstants.DATABASE_NAME} WHERE _id = :id")
+    fun remove(id: Int)
 }

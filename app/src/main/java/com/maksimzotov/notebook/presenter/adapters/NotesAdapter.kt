@@ -11,18 +11,26 @@ import com.maksimzotov.notebook.domain.entities.note.Note
 import com.maksimzotov.notebook.domain.entities.note.NoteWithDeadline
 import com.maksimzotov.notebook.presenter.main.util.DateConverter
 import com.maksimzotov.notebook.presenter.main.util.OnItemClickListener
+import com.maksimzotov.notebook.presenter.main.util.OnItemLongClickListener
 
 sealed class BaseNoteViewHolder(
     root: View,
-    private val onCityClickListener: OnItemClickListener,
+    private val onItemClickListener: OnItemClickListener,
+    private val onItemLongClickListener: OnItemLongClickListener,
 ) : RecyclerView.ViewHolder(root) {
 
     @SuppressLint("SimpleDateFormat")
     val dateFormat = DateConverter()
 
     init {
-        root.setOnClickListener {
-            onCityClickListener.onItemClick(adapterPosition)
+        with(root) {
+            setOnClickListener {
+                onItemClickListener.onItemClick(adapterPosition)
+            }
+            setOnLongClickListener {
+                onItemLongClickListener.onItemLongClick(adapterPosition)
+                return@setOnLongClickListener true
+            }
         }
     }
 }
@@ -30,7 +38,8 @@ sealed class BaseNoteViewHolder(
 class NoteViewHolder(
     private val binding: ItemNoteBinding,
     onCityClickListener: OnItemClickListener,
-) : BaseNoteViewHolder(binding.root, onCityClickListener) {
+    onItemLongClickListener: OnItemLongClickListener
+) : BaseNoteViewHolder(binding.root, onCityClickListener, onItemLongClickListener) {
 
     fun bind(item: Note) {
         with(binding) {
@@ -44,7 +53,8 @@ class NoteViewHolder(
 class NoteWithDeadlineViewHolder(
     private val binding: ItemNoteWithDeadlineBinding,
     onCityClickListener: OnItemClickListener,
-) : BaseNoteViewHolder(binding.root, onCityClickListener) {
+    onItemLongClickListener: OnItemLongClickListener
+) : BaseNoteViewHolder(binding.root, onCityClickListener, onItemLongClickListener) {
 
     fun bind(item: NoteWithDeadline) {
         with(binding) {
@@ -59,6 +69,7 @@ class NoteWithDeadlineViewHolder(
 class NotesAdapter(
     var notes: List<Note>,
     private val onItemClickListener: OnItemClickListener,
+    private val onItemLongClickListener: OnItemLongClickListener
 ) : RecyclerView.Adapter<BaseNoteViewHolder>() {
 
     companion object {
@@ -83,7 +94,8 @@ class NotesAdapter(
                     parent,
                     false
                 ),
-                onItemClickListener
+                onItemClickListener,
+                onItemLongClickListener
             )
         else
             NoteWithDeadlineViewHolder(
@@ -92,7 +104,8 @@ class NotesAdapter(
                     parent,
                     false
                 ),
-                onItemClickListener
+                onItemClickListener,
+                onItemLongClickListener
             )
 
     override fun onBindViewHolder(holder: BaseNoteViewHolder, position: Int) {

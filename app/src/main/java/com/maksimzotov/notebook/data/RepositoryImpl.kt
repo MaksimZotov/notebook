@@ -49,8 +49,8 @@ class RepositoryImpl @Inject constructor(
         notesDao.add(note.mapToNoteDto())
     }
 
-    override suspend fun removeNote(note: Note) {
-        notesDao.remove(note.mapToNoteDto())
+    override suspend fun removeNote(noteId: Int) {
+        notesDao.remove(noteId)
     }
 
     override suspend fun updateNote(note: Note) {

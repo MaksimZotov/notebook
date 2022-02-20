@@ -17,8 +17,8 @@ class NotesListViewModel @Inject constructor(
 
     val notes: StateFlow<List<Note>> = getNotesUseCase.getNotes().stateIn(emptyList())
 
-    fun removeNote(note: Note) = viewModelScope.launch {
-        removeNoteUseCase.removeNote(note)
+    fun removeNote(noteId: Int) = viewModelScope.launch {
+        removeNoteUseCase.removeNote(noteId)
     }
 
     fun navigateToNoteDetailsToAddNewNote() =
@@ -28,6 +28,11 @@ class NotesListViewModel @Inject constructor(
 
     fun navigateToNoteDetailsToEditNoteWithId(id: Int) =
         navigate(NotesListFragmentDirections.actionNotesListFragmentToNoteDetailsFragment(
+            id
+        ))
+
+    fun navigateToRemoveDialog(id: Int) =
+        navigate(NotesListFragmentDirections.actionNotesListFragmentToRemoveDialogFragment(
             id
         ))
 }

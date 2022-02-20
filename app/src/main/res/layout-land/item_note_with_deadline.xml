@@ -47,6 +47,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/shape_nested"
+        android:gravity="top"
         android:minLines="5"
         android:maxLines="10"
         app:layout_constraintBottom_toBottomOf="parent"

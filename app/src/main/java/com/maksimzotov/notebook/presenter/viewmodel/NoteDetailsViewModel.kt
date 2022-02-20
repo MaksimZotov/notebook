@@ -68,7 +68,7 @@ class NoteDetailsViewModel @Inject constructor(
                     deadline = dateConverter.parse(deadline)
                 ))
             else
-                addNoteUseCase.addNote(Note(
+                updateNoteUseCase.updateNote(Note(
                     _id = noteId,
                     title = title,
                     text = text,

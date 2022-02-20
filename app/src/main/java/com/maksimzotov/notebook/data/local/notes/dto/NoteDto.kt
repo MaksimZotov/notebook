@@ -28,6 +28,7 @@ data class NoteDto(
 fun Note.mapToNoteDto(): NoteDto =
     if (this is NoteWithDeadline)
         NoteDto(
+            _id = _id,
             title = title,
             text = text,
             time = time,
@@ -35,6 +36,7 @@ fun Note.mapToNoteDto(): NoteDto =
         )
     else
         NoteDto(
+            _id = _id,
             title = title,
             text = text,
             time = time

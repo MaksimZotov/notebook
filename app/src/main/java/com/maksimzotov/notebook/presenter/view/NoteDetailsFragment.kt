@@ -51,10 +51,10 @@ class NoteDetailsFragment: BaseFragment
                 DatePickerDialog(
                     requireActivity(),
                     { _, _year, _month, _day ->
-                        deadline.text = viewModel.getTextByYearMonthDay(_year, _month, _day)
+                        deadline.text = viewModel.getTextByYearMonthDay(_day, _month, _year)
                     },
                     year,
-                    month - 1,
+                    month,
                     day
                 ).show()
             }
